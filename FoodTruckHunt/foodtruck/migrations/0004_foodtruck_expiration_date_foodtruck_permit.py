@@ -6,18 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('foodtruck', '0003_alter_foodtruck_address_alter_foodtruck_applicant_and_more'),
+        (
+            "foodtruck",
+            "0003_alter_foodtruck_address_alter_foodtruck_applicant_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='foodtruck',
-            name='expiration_date',
+            model_name="foodtruck",
+            name="expiration_date",
             field=models.DateField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='foodtruck',
-            name='permit',
+            model_name="foodtruck",
+            name="permit",
             field=models.CharField(blank=True, max_length=20, null=True),
         ),
     ]

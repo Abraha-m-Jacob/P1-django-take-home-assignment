@@ -1,17 +1,20 @@
 import os
-from dotenv import load_dotenv
-from . import error_messages
 from typing import Union
+
 from django.http import QueryDict
+from dotenv import load_dotenv
 from geopy.distance import geodesic
+
+from . import error_messages
+from .models import FoodTruck
 
 load_dotenv()
 
 
 class CustomValidationException(Exception):
     def __init__(self, error: dict):
-        self.error_code = error['error_code']
-        self.message = error['message']
+        self.error_code = error["error_code"]
+        self.message = error["message"]
 
     def to_dict(self):
         return {"error_code": self.error_code, "message": self.message}
@@ -19,24 +22,36 @@ class CustomValidationException(Exception):
 
 def validate_pagination_params(request):
     try:
-        offset = int(request.GET.get('offset'))
-        limit = int(request.GET.get('limit'))
+        offset = int(request.GET.get("offset"))
+        limit = int(request.GET.get("limit"))
         if offset < 0:
-            raise CustomValidationException(error_messages.ERR_1007_OFFSET_POSITIVE_NUMERIC)
+            raise CustomValidationException(
+                error_messages.ERR_1007_OFFSET_POSITIVE_NUMERIC
+            )
         if limit < 0:
-            raise CustomValidationException(error_messages.ERR_1008_LIMIT_POSITIVE_NUMERIC)
+            raise CustomValidationException(
+                error_messages.ERR_1008_LIMIT_POSITIVE_NUMERIC
+            )
         return offset, limit
     except ValueError:
-        raise CustomValidationException(error_messages.ERR_1006_PAGINATION_PARAMS_INVALID)
+        raise CustomValidationException(
+            error_messages.ERR_1006_PAGINATION_PARAMS_INVALID
+        )
 
 
-def validate_required_fields(request_data: Union[dict, QueryDict], required_fields: list):
+def validate_required_fields(
+    request_data: Union[dict, QueryDict], required_fields: list
+):
     print("request_data-------------", request_data)
     missing_fields = [field for field in required_fields if field not in request_data]
     if missing_fields:
         error_message = f"{error_messages.ERR_1001_MISSING_FIELDS['message']}: {', '.join(missing_fields)}"
-        raise CustomValidationException({'error_code': error_messages.ERR_1001_MISSING_FIELDS['error_code'],
-                                         'message': error_message})
+        raise CustomValidationException(
+            {
+                "error_code": error_messages.ERR_1001_MISSING_FIELDS["error_code"],
+                "message": error_message,
+            }
+        )
 
 
 def validate_latitude(latitude: str):
@@ -61,6 +76,9 @@ def validate_longitude(longitude: str):
         raise CustomValidationException(error_messages.ERR_1004_LONGITUDE_NUMERIC)
 
 
-def find_distance_from_location(latitude, longitude, food_truck):
-    return geodesic((latitude, longitude), (food_truck.latitude, food_truck.longitude)).miles
-
+def find_distance_from_location(
+    latitude: float, longitude: float, food_truck: FoodTruck
+):
+    return geodesic(
+        (latitude, longitude), (food_truck.latitude, food_truck.longitude)
+    ).miles

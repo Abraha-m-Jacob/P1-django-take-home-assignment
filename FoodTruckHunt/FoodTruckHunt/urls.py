@@ -15,8 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path, include
+from django.urls import include, path
 
 urlpatterns = [
-    path('', include('foodtruck.urls')),
+    path("", include("foodtruck.urls")),
 ]

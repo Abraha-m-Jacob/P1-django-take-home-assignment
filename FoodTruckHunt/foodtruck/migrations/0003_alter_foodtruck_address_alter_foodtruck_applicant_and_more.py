@@ -6,43 +6,43 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('foodtruck', '0002_alter_foodtruck_food_items_alter_foodtruck_schedule'),
+        ("foodtruck", "0002_alter_foodtruck_food_items_alter_foodtruck_schedule"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='foodtruck',
-            name='address',
+            model_name="foodtruck",
+            name="address",
             field=models.CharField(max_length=500),
         ),
         migrations.AlterField(
-            model_name='foodtruck',
-            name='applicant',
+            model_name="foodtruck",
+            name="applicant",
             field=models.CharField(max_length=500),
         ),
         migrations.AlterField(
-            model_name='foodtruck',
-            name='facility_type',
+            model_name="foodtruck",
+            name="facility_type",
             field=models.CharField(max_length=500),
         ),
         migrations.AlterField(
-            model_name='foodtruck',
-            name='food_items',
+            model_name="foodtruck",
+            name="food_items",
             field=models.CharField(max_length=500),
         ),
         migrations.AlterField(
-            model_name='foodtruck',
-            name='location_description',
+            model_name="foodtruck",
+            name="location_description",
             field=models.CharField(max_length=500),
         ),
         migrations.AlterField(
-            model_name='foodtruck',
-            name='schedule',
+            model_name="foodtruck",
+            name="schedule",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
         migrations.AlterField(
-            model_name='foodtruck',
-            name='status',
+            model_name="foodtruck",
+            name="status",
             field=models.CharField(max_length=500),
         ),
     ]

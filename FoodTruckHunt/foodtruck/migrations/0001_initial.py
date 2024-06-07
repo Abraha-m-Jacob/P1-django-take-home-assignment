@@ -7,24 +7,31 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='FoodTruck',
+            name="FoodTruck",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('locationid', models.CharField(max_length=20, unique=True)),
-                ('applicant', models.CharField(max_length=255)),
-                ('facility_type', models.CharField(max_length=50)),
-                ('location_description', models.CharField(max_length=255)),
-                ('address', models.CharField(max_length=255)),
-                ('food_items', models.TextField()),
-                ('latitude', models.FloatField()),
-                ('longitude', models.FloatField()),
-                ('status', models.CharField(max_length=50)),
-                ('schedule', models.URLField(blank=True, max_length=255, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("locationid", models.CharField(max_length=20, unique=True)),
+                ("applicant", models.CharField(max_length=255)),
+                ("facility_type", models.CharField(max_length=50)),
+                ("location_description", models.CharField(max_length=255)),
+                ("address", models.CharField(max_length=255)),
+                ("food_items", models.TextField()),
+                ("latitude", models.FloatField()),
+                ("longitude", models.FloatField()),
+                ("status", models.CharField(max_length=50)),
+                ("schedule", models.URLField(blank=True, max_length=255, null=True)),
             ],
         ),
     ]
